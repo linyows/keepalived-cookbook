@@ -5,7 +5,7 @@ describe service('keepalived') do
   it { should be_running }
 end
 
-describe file('/etc/keepalived/conf.d/vrrp_VI_1.conf') do
+describe file('/etc/keepalived/conf.d/vi_1_vrrp.conf') do
   it { should be_file }
   it { should contain 'vrrp_instance VI_1' }
   it { should contain 'interface eth0' }

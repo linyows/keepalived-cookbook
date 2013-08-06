@@ -12,6 +12,7 @@ RSpec.configure do |c|
   else
     c.sudo_password = ENV['SUDO_PASSWORD']
   end
+
   c.before :all do
     block = self.class.metadata[:example_group_block]
     if RUBY_VERSION.start_with?('1.8')
@@ -20,13 +21,13 @@ RSpec.configure do |c|
       file = block.source_location.first
     end
     host  = File.basename(Pathname.new(file).dirname)
+
     if c.host != host
       c.ssh.close if c.ssh
       c.host  = host
       options = Net::SSH::Config.for(c.host)
       user    = options[:user] || Etc.getlogin
-      
-      vagrant_up = `vagrant up default`
+
       config = `vagrant ssh-config default`
       if config != ''
         config.each_line do |line|
@@ -41,7 +42,7 @@ RSpec.configure do |c|
           end
         end
       end
-    
+
       c.ssh   = Net::SSH.start(c.host, user, options)
     end
   end

@@ -1,6 +1,7 @@
 # Cookbook Name:: keepalived
 # Recipe:: default
 
+package 'ipvsadm'
 package 'keepalived'
 
 service 'keepalived' do

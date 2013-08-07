@@ -13,8 +13,8 @@ attribute :interface,
   :kind_of => String,
   :required => true
 attribute :virtual_router_id,
-  :kind_of => String,
-  :default => 'SERVICE_MASTER'
+  :kind_of => Integer,
+  :default => 1
 attribute :state,
   :kind_of => Symbol,
   :equal_to => [:master, :backup],

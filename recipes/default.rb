@@ -46,7 +46,7 @@ node['keepalived']['instances'].each do |name, instance|
     action :create
 
     interface instance['interface']
-    virtual_router_id (instance['virtual_router_ids'][node.name] || defaults['virtual_router_id'])
+    virtual_router_id (instance['virtual_router_ids'][node.name] || defaults['virtual_router_id']).to_i
     state (instance['states'][node.name] || defaults['state']).to_sym
     nopreempt if instance['nopreempt']
     priority (instance['priorities'][node.name] || defaults['priority']).to_i

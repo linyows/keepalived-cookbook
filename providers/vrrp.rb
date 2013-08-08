@@ -34,7 +34,7 @@ action :create do
       'virtual_ip_addresses' => new_resource.virtual_ip_addresses,
       'options' => options
     )
-    notifies :reload, "service[keepalived]", :immediately
+    notifies :reload, 'service[keepalived]'
   end
 
   new_resource.updated_by_last_action(r.updated_by_last_action?)

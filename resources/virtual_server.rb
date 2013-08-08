@@ -9,7 +9,7 @@ def initialize(*args)
   @action = :create
 end
 
-attribute :ip_and_port,
+attribute :ip_addresses,
   :kind_of => [Array, String],
   :required => true
 attribute :delay_loop,

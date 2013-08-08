@@ -46,7 +46,7 @@ Vagrant.configure('2') do |config|
             },
             :nopreempt => false,
             :advert_int => 1,
-            :grap_master_delay => 5,
+            :garp_master_delay => 3,
             :auth_type => :pass,
             :auth_pass => 'secret'
           }

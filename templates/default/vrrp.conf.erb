@@ -10,7 +10,7 @@ vrrp_instance <%= @name.upcase %> {
   state <%= @state.to_s.upcase %>
   priority <%= @priority %>
   advert_int <%= @advert_int %>
-  grap_master_delay <%= @grap_master_delay %>
+  garp_master_delay <%= @garp_master_delay %>
   <% if @options['auth_type'] -%>
   authentication {
     auth_type <%= @options['auth_type'].to_s.upcase %>

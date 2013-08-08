@@ -24,7 +24,6 @@ override_attributes(
         :states => { 'master.domain' => :master, 'backup.domain' => :backup },
         :virtual_router_ids => { 'master.domain' => 1, 'backup.domain' => 2 },
         :priorities => { 'master.domain' => 101, 'backup.domain' => 100 },
-        :track_script => 'unicorn',
         :nopreempt => false,
         :advert_int => 1,
         :garp_master_delay => 3,
@@ -44,15 +43,27 @@ override_attributes(
         :lvs_sched => :rr,
         :lvs_method => :dr,
         :protocol => :tcp,
-        :real_server => { :port => 443, :weight => 0, :inhibit_on_failure => true,
-                          :tcp_check_port => 443, :tcp_check_timeout => 30 },
-        :real_servers => [{ :ip_address => '157.7.100.50' }, { :ip_address => '157.7.100.51' },
-                           { :ip_address => '157.7.100.52' }, { :ip_address => '157.7.100.53' }]
+        :real_server_generics => {
+          :port => 443, :weight => 0, :inhibit_on_failure => true,
+          :tcp_check_port => 443, :tcp_check_timeout => 30
+        },
+        :real_servers => [
+          { :ip_address => '157.7.100.50' }, { :ip_address => '157.7.100.51' },
+          { :ip_address => '157.7.100.52' }, { :ip_address => '157.7.100.53' }
+        ]
       }
     }
   }
 )
 ```
+
+Resources / Providers
+---------------------
+
+- vrrp
+- virtual_server
+- check_script
+
 
 Contributing
 ------------

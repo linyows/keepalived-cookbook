@@ -14,7 +14,8 @@ attribute :interface,
   :required => true
 attribute :virtual_router_id,
   :kind_of => Integer,
-  :default => 1
+  :equal_to => 0.upto(255).map { |n| n },
+  :default => 200
 attribute :state,
   :kind_of => Symbol,
   :equal_to => [:master, :backup],

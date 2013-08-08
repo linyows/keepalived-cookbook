@@ -3,7 +3,6 @@
 
 action :create do
   options = %w(
-    advert_int
     auth_type
     auth_pass
     track_script
@@ -27,8 +26,10 @@ action :create do
       'name' => new_resource.name,
       'interface' => new_resource.interface,
       'virtual_router_id' => new_resource.virtual_router_id,
+      'advert_int' => new_resource.advert_int,
       'state' => new_resource.state,
       'nopreempt' => new_resource.nopreempt,
+      'garp_master_delay' => new_resource.garp_master_delay,
       'priority' => new_resource.priority,
       'virtual_ip_addresses' => new_resource.virtual_ip_addresses,
       'options' => options

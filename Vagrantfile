@@ -48,6 +48,7 @@ Vagrant.configure('2') do |config|
             :track_script => 'unicorn',
             :nopreempt => false,
             :advert_int => 1,
+            :grap_master_delay => 5,
             :auth_type => :pass,
             :auth_pass => 'secret'
           }

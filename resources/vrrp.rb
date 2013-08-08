@@ -19,6 +19,12 @@ attribute :state,
   :kind_of => Symbol,
   :equal_to => [:master, :backup],
   :default => :backup
+attribute :garp_master_delay,
+  :kind_of => Integer,
+  :default => 5
+attribute :advert_int,
+  :kind_of => Integer,
+  :default => 1
 attribute :nopreempt,
   :kind_of => [TrueClass, FalseClass],
   :default => false
@@ -30,9 +36,6 @@ attribute :virtual_ip_addresses,
   :required => true
 
 # Optional attributes
-attribute :advert_int,
-  :kind_of => Integer,
-  :required => false
 attribute :auth_type,
   :kind_of => Symbol,
   :equal_to => [:pass, :ah],

@@ -34,20 +34,16 @@ Vagrant.configure('2') do |config|
             :state => :master,
             :states => {
               'keepalived' => :master,
-              'master.domain' => :master,
-              'backup.domain' => :backup
+              'keepalived_backup' => :backup
             },
             :virtual_router_ids => {
-              'keepalived' => 'SERVICE_MASTER',
-              'master.domain' => 'SERVICE_MASTER',
-              'backup.domain' => 'SERVICE_BACKUP'
+              'keepalived' => 1,
+              'keepalived_backup' => 2
             },
             :priorities => {
               'keepalived' => 101,
-              'master.domain' => 101,
-              'backup.domain' => 100
+              'keepalived_backup' => 100
             },
-            :track_script => 'unicorn',
             :nopreempt => false,
             :advert_int => 1,
             :grap_master_delay => 5,
@@ -58,7 +54,7 @@ Vagrant.configure('2') do |config|
         :virtual_servers => {
           :secure_web => {
             :ip_and_port => '157.7.100.50 443',
-            :delay_loop => 60,
+            :delay_loop => 15,
             :lvs_sched => :rr,
             :lvs_method => :dr,
             :protocol => :tcp,
@@ -78,7 +74,7 @@ Vagrant.configure('2') do |config|
           },
           :cache => {
             :ip_and_port => '172.17.4.235 11211',
-            :delay_loop => 10,
+            :delay_loop => 15,
             :lvs_sched => :rr,
             :lvs_method => :dr,
             :protocol => :tcp,

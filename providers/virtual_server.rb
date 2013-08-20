@@ -7,7 +7,7 @@ action :create do
 
   file_name = "#{new_resource.name}_#{resource_name}"
 
-  r = template "#{file_name}" do
+  r = template file_name do
     path "/etc/keepalived/conf.d/#{file_name}.conf"
     source "#{resource_name}.conf.erb"
     cookbook 'keepalived'

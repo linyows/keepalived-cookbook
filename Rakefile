@@ -1,6 +1,8 @@
-require 'rake'
-require 'rspec/core/rake_task'
+#!/usr/bin/env rake
 
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = 'spec/*/*_spec.rb'
+require 'rake-foodcritic'
+require 'rake-chef-syntax'
+
+namespace :chef do
+  task :spec => [:foodcritic, :syntax_check]
 end

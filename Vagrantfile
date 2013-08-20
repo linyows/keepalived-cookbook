@@ -18,13 +18,6 @@ Vagrant.configure('2') do |config|
     chef.add_recipe 'keepalived'
     chef.json = {
       :keepalived => {
-        :check_scripts => {
-          :unicorn => {
-            :script => 'kill -0 unicorn',
-            :interval => 2,
-            :weight => 2
-          }
-        },
         :instances => {
           :vi_1 => {
             :virtual_ip_addresses => '192.168.0.1',

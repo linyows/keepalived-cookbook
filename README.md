@@ -1,6 +1,8 @@
 Keepalived Cookbook
 ===================
 
+[![Build Status](https://secure.travis-ci.org/linyows/keepalived-cookbook.png)][travis]
+
 Installs keepalived and generates the configuration file.
 
 Usage
@@ -50,6 +52,38 @@ override_attributes(
 )
 ```
 
+Requirements
+------------
+
+- Chef >= 11.4
+- Platform: ubuntu, debian, fedora, centos and redhat
+
+Installation
+------------
+
+[Librarian-Chef][librarian] is a bundler for your Chef cookbooks. To install Librarian-Chef:
+
+```ruby
+cd chef-repo
+gem install librarian
+librarian-chef init
+```
+
+To reference the Git version:
+
+```log
+repo="linyows/keepalived-cookbook"
+latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
+| ruby -rjson -e '
+  j = JSON.parse(STDIN.read);
+  puts j.map { |t| t["ref"].split("/").last }.sort.last
+')
+cat >> Cheffile <<END_OF_CHEFFILE
+cookbook 'keepalived', :git => 'git://github.com/$repo.git', :ref => '$latest_release'
+END_OF_CHEFFILE
+librarian-chef install
+```
+
 Resources / Providers
 ---------------------
 
@@ -58,22 +92,15 @@ Resources / Providers
 - check_script
 
 
-Contributing
-------------
 
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
 
-Authors and Contributors
-------------------------
+License and Author
+------------------
 
-- [linyows](https://github.com/linyows)
+MIT License
 
-License
--------
+- [linyows][linyows]
 
-MIT
+[travis]: http://travis-ci.org/linyows/keepalived-cookbook
+[librarian]: https://github.com/applicationsonline/librarian#readme
+[linyows]: https://github.com/linyows

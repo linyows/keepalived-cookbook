@@ -10,9 +10,7 @@ Role based load balancing example:
 
 ```ruby
 run_list(
-  'recipe[keepalived]',
-  'recipe[keepalived::vrrp]',
-  'recipe[keepalived::virtual_server]'
+  'recipe[keepalived]'
 )
 
 override_attributes(

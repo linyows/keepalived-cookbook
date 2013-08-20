@@ -25,3 +25,7 @@ template 'keepalived.conf' do
   notifies :start, 'service[keepalived]'
   notifies :reload, 'service[keepalived]'
 end
+
+include_recipe 'keepalived::vrrp'
+include_recipe 'keepalived::check_script'
+include_recipe 'keepalived::virtual_server'

@@ -15,7 +15,7 @@ action :create do
       'interval' => new_resource.interval,
       'weight' => new_resource.weight
     )
-    notifies :reload, 'service[keepalived]'
+    notifies :restart, 'service[keepalived]'
   end
 
   new_resource.updated_by_last_action(r.updated_by_last_action?)

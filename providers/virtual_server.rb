@@ -26,7 +26,7 @@ action :create do
       'sorry_server' => new_resource.sorry_server,
       'virtual_host' => new_resource.virtual_host
     )
-    notifies :reload, 'service[keepalived]'
+    notifies :restart, 'service[keepalived]'
   end
 
   new_resource.updated_by_last_action(r.updated_by_last_action?)

@@ -5,8 +5,8 @@ package 'ipvsadm'
 package 'keepalived'
 
 service 'keepalived' do
-  supports :restart => true, :status => false
-  action :enable
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :start]
 end
 
 directory '/etc/keepalived/conf.d' do
@@ -22,8 +22,7 @@ template 'keepalived.conf' do
   owner 'root'
   group 'root'
   mode 0644
-  notifies :start, 'service[keepalived]'
-  notifies :reload, 'service[keepalived]'
+  notifies :restart, 'service[keepalived]'
 end
 
 include_recipe 'keepalived::vrrp'

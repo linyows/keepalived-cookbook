@@ -1,7 +1,7 @@
 # Cookbook Name:: keepalived
 # Recipe:: virtual_servers
 
-Array(node[:keepalived][:virtual_servers]).each do |name, server|
+Array(node['keepalived']['virtual_servers']).each do |name, server|
   if server[:real_server] && server[:real_servers].is_a?(Array)
     rs = server[:real_servers].each_with_object([]) do |real_server, result|
       result << real_server.merge(server[:real_server])

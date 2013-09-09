@@ -1,11 +1,11 @@
 # Cookbook Name:: keepalived
 # Recipe:: vrrp_instances
 
-Array(node[:keepalived][:vrrp_instances]).each do |name, instance|
+Array(node['keepalived']['vrrp_instances']).each do |name, instance|
   instance[:states] ||= {}
   instance[:priorities] ||= {}
   instance[:virtual_router_ids] ||= {}
-  defaults = node[:keepalived][:vrrp_instance]
+  defaults = node['keepalived']['vrrp_instance']
 
   keepalived_vrrp_instance name do
     action :create

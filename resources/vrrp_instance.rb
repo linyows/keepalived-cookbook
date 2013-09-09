@@ -1,5 +1,5 @@
 # Cookbook Name:: keepalived
-# Resource:: vrrp
+# Resource:: vrrp_instance
 
 actions :create
 default_action :create
@@ -9,6 +9,11 @@ def initialize(*args)
   @action = :create
 end
 
+attribute :name,
+  :name_attribute => true,
+  :kind_of => String
+attribute :file_name,
+  :kind_of => String
 attribute :interface,
   :kind_of => String,
   :required => true

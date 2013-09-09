@@ -38,7 +38,7 @@ override_attributes(
         :lvs_sched => :rr,
         :lvs_method => :dr,
         :protocol => :tcp,
-        :real_server_generics => {
+        :real_server => {
           :port => 443, :weight => 0, :inhibit_on_failure => true,
           :tcp_check_port => 443, :tcp_check_timeout => 30
         },
@@ -84,15 +84,63 @@ END_OF_CHEFFILE
 librarian-chef install
 ```
 
+Attributes
+----------
+
+### keepalived::default
+
+Key                     | Description      | Default
+---                     | -----------      | -------
+router_id               | router id        | default_router_id
+notification_emails     | notify to emails | admin@example.com
+notification_email_from | notify by email  | example.com
+smtp_server             | smtp host        | 127.0.0.1
+smtp_connect_timeout    | connect timeout  | 30
+include_files           | outside files    | []
+check_scripts           | hash             | {}
+vrrp_instances          | hash             | {}
+virtual_servers         | hash             | {}
+
+### keepalived::vrrp_instance
+
+Key               | Description             | Default
+---               | -----------             | -------
+state             | instance role           | :master
+priority          | instance priority       | 100
+virtual_router_id | virtual router id       | 1
+garp_master_delay | GARP delay time         | 5
+auth_type         | authentication type     | nil
+auth_pass         | authentication password | nil
+track_script      | check script name       | nil
+notify_master     |                         | nil
+notify_backup     |                         | nil
+notify_fault      |                         | nil
+
+### keepalived::virtual_server_generics
+
+Key        | Description                                                        | Default
+---        | -----------                                                        | -------
+lvs_sched  | scheduling algorithm #=> %i(rr wrr lc wlc sed nq sh dh lblc lblcr) | :lc
+lvs_method | nat or dsr                                                         | :dr
+delay_loop | health check interval                                              | 5
+protocol   | health check protocol                                              | :tcp
+
 Resources / Providers
 ---------------------
 
-- vrrp
-- virtual_server
-- check_script
+- keepalived
+- keepalived_vrrp_instance
+- keepalived_virtual_server
+- keepalived_check_script
 
+### keepalived
 
+#### Actions
 
+Action  | Description        | Default
+------  | -----------        | -------
+enable  | setup and settings | yes
+disable | disable keepalived
 
 License and Author
 ------------------

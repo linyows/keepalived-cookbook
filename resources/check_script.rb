@@ -9,6 +9,11 @@ def initialize(*args)
   @action = :create
 end
 
+attribute :name,
+  :name_attribute => true,
+  :kind_of => String
+attribute :file_name,
+  :kind_of => String
 attribute :script,
   :kind_of => String,
   :required => true

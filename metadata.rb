@@ -4,7 +4,7 @@ maintainer_email 'linyows@gmail.com'
 license          'MIT'
 description      'Installs/Configures keepalived'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.4.0'
+version          '0.5.0'
 
 recipe 'keepalived', 'Installs and configures keepalived'
 recipe 'keepalived::disabled', 'disable keepalived'

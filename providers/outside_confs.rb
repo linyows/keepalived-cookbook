@@ -17,6 +17,8 @@ action :init do
       mode 0775
       not_if "ls #{outside_conf_dir_path}"
     end
+
+    new_resource.updated_by_last_action(true)
   end
 end
 
@@ -36,5 +38,7 @@ action :delete do
     else
       Chef::Log.info 'unused configs is not there - nothing to do'
     end
+
+    new_resource.updated_by_last_action(true)
   end
 end

@@ -17,7 +17,7 @@ run_list(
 
 override_attributes(
   :keepalived => {
-    :instances => {
+    :vrrp_instances => {
       :vi_1 => {
         :ip_addresses => '10.0.0.1',
         :interface => 'eth0',

@@ -116,7 +116,7 @@ notify_master     |                         | nil
 notify_backup     |                         | nil
 notify_fault      |                         | nil
 
-### keepalived::virtual_server_generics
+### keepalived::virtual_server
 
 Key        | Description                                                        | Default
 ---        | -----------                                                        | -------

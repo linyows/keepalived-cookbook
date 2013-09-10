@@ -1,6 +1,8 @@
 # Cookbook Name:: keepalived
 # Provider:: default
 
+include Chef::Mixin::Keepalived
+
 def whyrun_supported?
   true
 end
@@ -16,7 +18,7 @@ action :enable do
     end
 
     r = template 'keepalived.conf' do
-      path '/etc/keepalived/keepalived.conf'
+      path conf_path
       source 'keepalived.conf.erb'
       cookbook 'keepalived'
       owner 'root'

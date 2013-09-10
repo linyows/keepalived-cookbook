@@ -31,6 +31,10 @@ class Chef
     module Keepalived
       include Chef::Mixin::ShellOut
 
+      def conf_path
+        '/etc/keepalived/keepalived.conf'
+      end
+
       def outside_conf_dir_path
         '/etc/keepalived/conf.d'
       end

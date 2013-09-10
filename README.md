@@ -97,6 +97,7 @@ notification_email_from | notify by email  | example.com
 smtp_server             | smtp host        | 127.0.0.1
 smtp_connect_timeout    | connect timeout  | 30
 include_files           | outside files    | []
+ip_forwarding           | sysctl settings  | nil
 check_scripts           | hash             | {}
 vrrp_instances          | hash             | {}
 virtual_servers         | hash             | {}

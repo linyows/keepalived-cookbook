@@ -67,6 +67,8 @@ class Chef
           '/proc/sys/net/ipv4/ip_forward'
         when 'rp_filter'
           '/proc/sys/net/ipv4/conf/default/rp_filter'
+        when 'rp_filter_eth1'
+          '/proc/sys/net/ipv4/conf/eth1/rp_filter'
         end
 
         cmd = "cat #{path}"
@@ -74,6 +76,15 @@ class Chef
 
         if out.exitstatus.zero?
           out.stdout.strip
+        else
+          Chef::Log.error out
+        end
+      end
+
+      def change_rp_filter(value, target = :default)
+        out = shell_out "echo #{value} > /proc/sys/net/ipv4/conf/#{target}/rp_filter"
+        if out.exitstatus.zero?
+          Chef::Log.debug out
         else
           Chef::Log.error out
         end
@@ -107,24 +118,31 @@ class Chef
         sysctl_changed = false
 
         if forwarding
-          filter_to = 0
-          forward_to = 1
+          ip_forward_value = 1
+          rp_filter_value = 0
         else
-          filter_to = 1
-          forward_to = 0
+          ip_forward_value = 0
+          rp_filter_value = 1
         end
 
-        if sysctl(:ip_forward).eql? forward_to.to_s
-          Chef::Log.info "Sysctl ip_forward is already \"#{forward_to}\" - nothing to do"
+        if sysctl(:ip_forward).eql? ip_forward_value.to_s
+          Chef::Log.info "Sysctl ip_forward is already \"#{ip_forward_value}\" - nothing to do"
         else
-          change_sysctl(ip_forward_attribute, forward_to)
+          change_sysctl(ip_forward_attribute, ip_forward_value)
           sysctl_changed = true
         end
 
-        if sysctl(:rp_filter).eql? filter_to.to_s
-          Chef::Log.info "Sysctl rp_filter is already \"#{forward_to}\" - nothing to do"
+        if sysctl(:rp_filter).eql? rp_filter_value.to_s
+          Chef::Log.info "Sysctl default rp_filter is already \"#{rp_filter_value}\" - nothing to do"
         else
-          change_sysctl(rp_filter_attribute, filter_to)
+          change_sysctl(rp_filter_attribute, rp_filter_value)
+          sysctl_changed = true
+        end
+
+        if sysctl(:rp_filter_eth1).eql? rp_filter_value.to_s
+          Chef::Log.info "Sysctl eth1 rp_filter is already \"#{rp_filter_value}\" - nothing to do"
+        else
+          change_rp_filter(rp_filter_value, :eth1)
           sysctl_changed = true
         end
 

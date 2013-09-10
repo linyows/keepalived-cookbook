@@ -17,7 +17,7 @@ action :enable do
       action [:enable, :start]
     end
 
-    r = template 'keepalived.conf' do
+    template 'keepalived.conf' do
       path conf_path
       source 'keepalived.conf.erb'
       cookbook 'keepalived'
@@ -36,7 +36,7 @@ action :enable do
       notifies :restart, 'service[keepalived]'
     end
 
-    new_resource.updated_by_last_action(r.updated_by_last_action?)
+    new_resource.updated_by_last_action(true)
   end
 end
 

@@ -31,6 +31,3 @@ attribute :smtp_connect_timeout,
 attribute :include_files,
   :kind_of => Array,
   :default => []
-attribute :ip_forwarding,
-  :kind_of => [TrueClass, FalseClass],
-  :default => true

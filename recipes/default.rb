@@ -17,7 +17,6 @@ keepalived node['keepalived']['router_id'] do
   smtp_server node['keepalived']['smtp_server']
   smtp_connect_timeout node['keepalived']['smtp_connect_timeout']
   include_files files
-  ip_forwarding node['keepalived']['ip_forwarding'] || !Array(node['keepalived']['virtual_servers']).length.zero?
 end
 
 # nothing to do if attributes nothing set

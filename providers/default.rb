@@ -17,8 +17,6 @@ action :enable do
       action [:enable, :start]
     end
 
-    change_ip_forward_to(new_resource.ip_forwarding)
-
     template 'keepalived.conf' do
       path conf_path
       source 'keepalived.conf.erb'

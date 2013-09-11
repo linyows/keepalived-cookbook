@@ -7,7 +7,6 @@ default['keepalived']['notification_email_from'] = "keepalived@#{node['domain'] 
 default['keepalived']['smtp_server'] = '127.0.0.1'
 default['keepalived']['smtp_connect_timeout'] = 30
 default['keepalived']['include_files'] = []
-default['keepalived']['ip_forwarding'] = nil
 
 default['keepalived']['check_scripts'] = {}
 default['keepalived']['vrrp_instances'] = {}

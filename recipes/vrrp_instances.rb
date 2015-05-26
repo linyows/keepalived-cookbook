@@ -15,7 +15,7 @@ Array(node['keepalived']['vrrp_instances']).each do |name, instance|
     garp_master_delay (instance[:garp_master_delay] || defaults[:garp_master_delay]).to_i
     advert_int (instance[:advert_int] || defaults[:advert_int]).to_i
     state (instance[:states][node.name] || defaults[:state]).to_sym
-    nopreempt if instance[:nopreempt]
+    nopreempt (true) if instance[:nopreempt]
     priority (instance[:priorities][node.name] || defaults[:priority]).to_i
     virtual_ip_addresses instance[:virtual_ip_addresses]
 

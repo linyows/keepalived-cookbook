@@ -12,7 +12,7 @@ Vagrant.configure('2') do |config|
       vrrp_instances: {
         vi_1: {
           virtual_ip_addresses: '192.168.50.254',
-          interface: 'eth0',
+          interface: 'enp0s8',
           state: :master,
           states: {
             'entry1' => :master,
@@ -35,14 +35,14 @@ Vagrant.configure('2') do |config|
       },
       virtual_servers: {
         http: {
-          ip_and_port: '192.168.50.254 80',
+          ip_addresses: '192.168.50.254 80',
           delay_loop: 15,
           lvs_sched: :rr,
           lvs_method: :dr,
           protocol: :tcp,
           real_server: {
             port: 80,
-            weight: 0,
+            weight: 1,
             inhibit_on_failure: true,
             tcp_check_port: 80,
             tcp_check_timeout: 30
@@ -84,33 +84,28 @@ Vagrant.configure('2') do |config|
   Dir.chdir(File.expand_path '../', __FILE__)
   sync_workspace
 
-  config.vm.box = 'chef/centos-6.6'
+  config.vm.box = 'linyows/centos-7.1_chef-12.2_puppet-3.7'
   cookbooks_path = [workspace]
 
   def scripts_for_lvs
     <<-SCRIPTS
-      sudo sysctl -w net.ipv4.ip_forward=1
-      sudo sed -i.bak -e "s:^net.ipv4.ip_forward = .*$:net.ipv4.ip_forward = 1:" /etc/sysctl.conf
-      sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-      sudo iptables -I INPUT -p vrrp -j ACCEPT
-      sudo service iptables save
+      sudo su
+      yum -y install tcpdump
+      sysctl -w net.ipv4.ip_forward=1
+      echo 'net.ipv4.ip_forward = 1' > /usr/lib/sysctl.d/10-ipv4_foward.conf
     SCRIPTS
   end
 
   def scripts_for_web(hostname)
     vip = '192.168.50.254'
     <<-SCRIPTS
-      sudo yum -y install httpd
-      sudo service httpd start
-      sudo chkconfig httpd on
-      sudo service iptables save
-      cat << EOS | sudo tee /var/www/html/index.html > /dev/null
-      <!DOCTYPE html>
-      #{hostname}
-      EOS
-      sudo iptables -t nat -I PREROUTING -d #{vip} -j REDIRECT
-      sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-      sudo service iptables save
+      sudo su
+      yum -y install httpd
+      echo '#{hostname}' > /var/www/html/index.html
+      systemctl start httpd
+      systemctl enable httpd
+      iptables -t nat -I PREROUTING -d #{vip} -j REDIRECT
+      service iptables save
     SCRIPTS
   end
 

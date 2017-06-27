@@ -31,3 +31,6 @@ attribute :smtp_connect_timeout,
 attribute :include_files,
   :kind_of => Array,
   :default => []
+attribute :global_defs,
+  :kind_of => [TrueClass, FalseClass],
+  :default => true

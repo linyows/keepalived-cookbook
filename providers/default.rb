@@ -26,6 +26,7 @@ action :enable do
       mode 0644
       variables(
         'name' => new_resource.name,
+        'global_defs' => new_resource.global_defs,
         'notification_emails' => new_resource.notification_emails,
         'notification_email_from' => new_resource.notification_email_from,
         'smtp_server' => new_resource.smtp_server,

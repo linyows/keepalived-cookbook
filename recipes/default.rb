@@ -11,6 +11,7 @@ files = Array(node['keepalived']['check_scripts']).map { |k,v|
 
 keepalived node['keepalived']['router_id'] do
   action :enable
+  global_defs node['keepalived']['global_defs']
   router_id node['keepalived']['router_id']
   notification_emails Array(node['keepalived']['notification_emails'])
   notification_email_from node['keepalived']['notification_email_from']

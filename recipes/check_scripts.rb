@@ -7,6 +7,7 @@ Array(node['keepalived']['check_scripts']).each do |name, script|
 
     script script[:script] || node['keepalived']['check_script']['script']
     interval script[:interval].to_i || node['keepalived']['check_script']['interval']
-    weight script[:weight].to_i || node['keepalived']['check_script']['weight']
+    w = (script[:weight].to_i || node['keepalived']['check_script']['weight'])
+    weight w if w
   end
 end

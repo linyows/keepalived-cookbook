@@ -15,6 +15,14 @@ action :create do
 
     file_name = new_resource.file_name || outside_conf_file_name(new_resource.name)
 
+    options = %w(
+      weight
+    ).each_with_object({}) do |attr, result|
+      if new_resource.respond_to?(attr) && !new_resource.send(attr.to_sym).nil?
+        result[attr] = new_resource.send(attr.to_sym)
+      end
+    end
+
     r = template file_name do
       path "#{outside_conf_dir_path}/#{file_name}"
       source 'check_script.conf.erb'
@@ -26,7 +34,7 @@ action :create do
         'name' => new_resource.name,
         'script' => new_resource.script,
         'interval' => new_resource.interval,
-        'weight' => new_resource.weight
+        'options' => options
       )
       notifies :restart, 'service[keepalived]'
     end

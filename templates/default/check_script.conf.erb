@@ -4,5 +4,7 @@
 vrrp_script <%= @name %> {
   script "<%= @script %>"
   interval <%= @interval %>
-  weight <%= @weight %>
+  <% if @options['weight'] %>
+  weight <%= @options['weight'] %>
+  <% end -%>
 }

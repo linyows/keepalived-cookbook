@@ -6,6 +6,7 @@ default['keepalived']['notification_emails'] = 'admin@example.com'
 default['keepalived']['notification_email_from'] = "keepalived@#{node['domain'] || 'example.com'}"
 default['keepalived']['smtp_server'] = '127.0.0.1'
 default['keepalived']['smtp_connect_timeout'] = 30
+default['keepalived']['global_defs'] = true
 default['keepalived']['include_files'] = []
 
 default['keepalived']['check_scripts'] = {}

@@ -7,4 +7,10 @@ vrrp_script <%= @name %> {
   <% if @options['weight'] %>
   weight <%= @options['weight'] %>
   <% end -%>
+  <% if @options['fall'] %>
+  fall <%= @options['fall'] %>
+  <% end -%>
+  <% if @options['rise'] %>
+  rise <%= @options['rise'] %>
+  <% end -%>
 }

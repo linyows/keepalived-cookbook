@@ -17,6 +17,8 @@ action :create do
 
     options = %w(
       weight
+      fall
+      rise
     ).each_with_object({}) do |attr, result|
       if new_resource.respond_to?(attr) && !new_resource.send(attr.to_sym).nil?
         result[attr] = new_resource.send(attr.to_sym)

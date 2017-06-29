@@ -17,6 +17,8 @@ default['keepalived']['virtual_servers'] = {}
 default['keepalived']['check_script']['script'] = ''
 default['keepalived']['check_script']['interval'] = 2
 default['keepalived']['check_script']['weight'] = nil
+default['keepalived']['check_script']['fall'] = nil
+default['keepalived']['check_script']['rise'] = nil
 
 default['keepalived']['vrrp_instance']['state'] = :master
 default['keepalived']['vrrp_instance']['priority'] = 100

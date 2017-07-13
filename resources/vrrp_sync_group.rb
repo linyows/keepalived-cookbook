@@ -12,6 +12,8 @@ end
 attribute :name,
   :name_attribute => true,
   :kind_of => String
+attribute :file_name,
+  :kind_of => String
 attribute :group,
   :kind_of => Array,
   :required => true

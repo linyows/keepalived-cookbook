@@ -3,7 +3,7 @@ class Chef
     class << self
       def outside_conf_file_name(role, name)
         case role.to_sym
-        when :vrrp_instance, :check_script, :virtual_server
+        when :vrrp_instance, :check_script, :virtual_server, :vrrp_sync_group
           "#{role}.#{name}.conf"
         else
           "#{name}.conf"

@@ -12,7 +12,7 @@ end
 attribute :name,
   :name_attribute => true,
   :kind_of => String
-attribute :group
+attribute :group,
   :kind_of => Array,
   :required => true
 

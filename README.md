@@ -1,7 +1,7 @@
 Keepalived Cookbook
 ===================
 
-[![Build Status](https://img.shields.io/travis/linyows/keepalived-cookbook.svg?style=for-the-badge)][travis]
+<a href="http://travis-ci.org/linyows/keepalived-cookbook"><img src="https://img.shields.io/travis/linyows/keepalived-cookbook.svg?style=for-the-badge" alt="travis"></a>
 
 Installs keepalived and generates the configuration file.
 

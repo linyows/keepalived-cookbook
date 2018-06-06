@@ -21,5 +21,8 @@ attribute :interval,
   :kind_of => Integer,
   :default => 2
 attribute :weight,
-  :kind_of => Integer,
-  :default => 2
+  :kind_of => Integer
+attribute :fall,
+  :kind_of => Integer
+attribute :rise,
+  :kind_of => Integer

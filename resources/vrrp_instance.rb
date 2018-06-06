@@ -50,7 +50,7 @@ attribute :auth_pass,
   :kind_of => String,
   :required => false
 attribute :track_script,
-  :kind_of => String,
+  :kind_of => [String, Array],
   :required => false
 attribute :notify_master,
   :kind_of => String,

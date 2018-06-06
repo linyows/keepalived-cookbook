@@ -116,6 +116,15 @@ notify_master     |                         | nil
 notify_backup     |                         | nil
 notify_fault      |                         | nil
 
+### keepalived::vrrp_sync_group
+
+Key           | Description         | Default
+---           | -----------         | -------
+group         | vrrp instance names | nil
+notify_backup |                     | nil
+notify_master |                     | nil
+notify_fault  |                     | nil
+
 ### keepalived::virtual_server
 
 Key        | Description                                                        | Default
@@ -131,6 +140,7 @@ Resources / Providers
 - keepalived
 - keepalived_vrrp_instance
 - keepalived_virtual_server
+- keepalived_virtual_sync_group
 - keepalived_check_script
 
 ### keepalived

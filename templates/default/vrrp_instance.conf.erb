@@ -22,9 +22,11 @@ vrrp_instance <%= @name.upcase %> {
     <%= address %>
     <% end %>
   }
-  <% if @options['track_script'] %>
+  <% if @options['track_script'] -%>
   track_script {
-    <%= @options['track_script'] %>
+    <% Array(@options['track_script']).each do |line| %>
+    <%= line %>
+    <% end %>
   }
   <% end -%>
 }

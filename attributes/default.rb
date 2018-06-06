@@ -16,7 +16,9 @@ default['keepalived']['virtual_servers'] = {}
 # defaults attributes
 default['keepalived']['check_script']['script'] = ''
 default['keepalived']['check_script']['interval'] = 2
-default['keepalived']['check_script']['weight'] = 2
+default['keepalived']['check_script']['weight'] = nil
+default['keepalived']['check_script']['fall'] = nil
+default['keepalived']['check_script']['rise'] = nil
 
 default['keepalived']['vrrp_instance']['state'] = :master
 default['keepalived']['vrrp_instance']['priority'] = 100
@@ -24,7 +26,7 @@ default['keepalived']['vrrp_instance']['virtual_router_id'] = 1
 default['keepalived']['vrrp_instance']['garp_master_delay'] = 5
 default['keepalived']['vrrp_instance']['auth_type'] = nil
 default['keepalived']['vrrp_instance']['auth_pass'] = nil
-default['keepalived']['vrrp_instance']['track_script'] = nil
+default['keepalived']['vrrp_instance']['track_script'] = []
 default['keepalived']['vrrp_instance']['notify_master'] = nil
 default['keepalived']['vrrp_instance']['notify_backup'] = nil
 default['keepalived']['vrrp_instance']['notify_fault'] = nil

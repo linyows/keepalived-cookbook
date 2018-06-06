@@ -14,8 +14,7 @@ attribute :name,
   :kind_of => String
 attribute :router_id,
   :name_attribute => true,
-  :kind_of => String,
-  :default => 'default_router_id'
+  :kind_of => String
 attribute :notification_emails,
   :kind_of => Array,
   :default => %w(admin@example.com)

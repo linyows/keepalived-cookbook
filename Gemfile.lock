@@ -54,12 +54,6 @@ GEM
       fauxhai (>= 4)
       rspec (~> 3.0)
     coderay (1.1.2)
-    coveralls (0.7.2)
-      multi_json (~> 1.3)
-      rest-client (= 1.6.7)
-      simplecov (>= 0.7)
-      term-ansicolor (= 1.2.2)
-      thor (= 0.18.1)
     cucumber-core (3.1.0)
       backports (>= 3.8.0)
       cucumber-tag_expressions (~> 1.1.0)
@@ -89,24 +83,11 @@ GEM
     ipaddress (0.8.3)
     iso8601 (0.9.1)
     json (2.1.0)
-    knife-solo (0.7.0.pre3)
-      chef (>= 10.20)
-      erubis (~> 2.7.0)
-      net-ssh (>= 2.7)
-    librarian (0.1.2)
-      highline
-      thor (~> 0.15)
-    librarian-chef (0.0.4)
-      chef (>= 0.10)
-      librarian (~> 0.1.0)
-      minitar (>= 0.5.2)
+    knife-zero (1.19.3)
+      chef (>= 12.6)
     libyajl2 (1.2.0)
     method_source (0.9.0)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
     mini_portile2 (2.3.0)
-    minitar (0.6.1)
     mixlib-archive (0.4.6)
       mixlib-log
     mixlib-authentication (2.1.0)
@@ -150,14 +131,9 @@ GEM
     public_suffix (3.0.2)
     rack (2.0.5)
     rake (12.3.1)
-    rake-chef-syntax (0.0.2)
-      chef
-      rake
     rake-foodcritic (0.0.3)
       foodcritic (>= 3.0.0)
       rake
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -196,10 +172,6 @@ GEM
       sfl
     syslog-logger (1.6.8)
     systemu (2.6.5)
-    term-ansicolor (1.2.2)
-      tins (~> 0.8)
-    thor (0.18.1)
-    tins (0.13.2)
     tomlrb (1.2.6)
     treetop (1.6.10)
       polyglot (~> 0.3)
@@ -213,13 +185,10 @@ DEPENDENCIES
   awesome_print
   chef
   chefspec
-  coveralls
   foodcritic
-  knife-solo (>= 0.3.0.pre2)
-  librarian-chef
+  knife-zero
   pry
   rake
-  rake-chef-syntax
   rake-foodcritic
   rspec
   serverspec

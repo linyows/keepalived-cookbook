@@ -4,11 +4,6 @@
 actions :create
 default_action :create
 
-def initialize(*args)
-  super
-  @action = :create
-end
-
 attribute :name,
   :name_attribute => true,
   :kind_of => String

@@ -4,11 +4,6 @@
 actions :enable, :disable
 default_action :enable
 
-def initialize(*args)
-  super
-  @action = :enable
-end
-
 attribute :name,
   :name_attribute => true,
   :kind_of => String

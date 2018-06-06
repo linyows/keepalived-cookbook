@@ -28,7 +28,7 @@ action :create do
 
     file_name = new_resource.file_name || outside_conf_file_name(new_resource.name)
 
-    r = template file_name do
+    template file_name do
       path "#{outside_conf_dir_path}/#{file_name}"
       source 'vrrp_instance.conf.erb'
       cookbook 'keepalived'
@@ -49,7 +49,5 @@ action :create do
       )
       notifies :restart, 'service[keepalived]'
     end
-
-    new_resource.updated_by_last_action(r.updated_by_last_action?)
   end
 end

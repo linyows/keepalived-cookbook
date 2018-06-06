@@ -25,7 +25,7 @@ action :create do
       end
     end
 
-    r = template file_name do
+    template file_name do
       path "#{outside_conf_dir_path}/#{file_name}"
       source 'check_script.conf.erb'
       cookbook 'keepalived'
@@ -40,7 +40,5 @@ action :create do
       )
       notifies :restart, 'service[keepalived]'
     end
-
-    new_resource.updated_by_last_action(r.updated_by_last_action?)
   end
 end

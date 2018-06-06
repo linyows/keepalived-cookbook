@@ -17,7 +17,7 @@ action :create do
     resource_name += '_group' if new_resource.ip_addresses.count > 1
     file_name = new_resource.file_name || outside_conf_file_name(new_resource.name)
 
-    r = template file_name do
+    template file_name do
       path "#{outside_conf_dir_path}/#{file_name}"
       source "#{resource_name}.conf.erb"
       cookbook 'keepalived'
@@ -38,7 +38,5 @@ action :create do
       )
       notifies :restart, 'service[keepalived]'
     end
-
-    new_resource.updated_by_last_action(r.updated_by_last_action?)
   end
 end

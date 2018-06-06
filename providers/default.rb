@@ -36,8 +36,6 @@ action :enable do
       )
       notifies :restart, 'service[keepalived]'
     end
-
-    new_resource.updated_by_last_action(true)
   end
 end
 

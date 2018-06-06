@@ -1,7 +1,7 @@
 Keepalived Cookbook
 ===================
 
-[![Build Status](https://secure.travis-ci.org/linyows/keepalived-cookbook.png)][travis]
+[![Build Status](https://img.shields.io/travis/linyows/keepalived-cookbook.svg?style=for-the-badge)][travis]
 
 Installs keepalived and generates the configuration file.
 
@@ -55,7 +55,7 @@ override_attributes(
 Requirements
 ------------
 
-- Chef >= 11.4
+- Chef >= 12.5
 - Platform: ubuntu, debian, fedora, centos and redhat
 
 Installation

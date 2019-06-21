@@ -37,7 +37,7 @@ action :create do
         'group' => new_resource.group,
         'options' => options
       )
-      notifies :restart, 'service[keepalived]'
+      notifies :reload, 'service[keepalived]'
     end
   end
 end

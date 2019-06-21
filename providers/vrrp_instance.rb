@@ -47,7 +47,7 @@ action :create do
         'virtual_ip_addresses' => new_resource.virtual_ip_addresses,
         'options' => options
       )
-      notifies :restart, 'service[keepalived]'
+      notifies :reload, 'service[keepalived]'
     end
   end
 end
